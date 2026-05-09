@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring</title>
+    
+    <link rel="stylesheet" href="{% static 'templatemo-glossy-touch.css' %}">
+<!--
+
+TemplateMo 592 glossy touch
+
+https://templatemo.com/tm-592-glossy-touch
+
+-->
+    <style>
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.form-control::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.form-control {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-form, .contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+
+body {
+      margin: 0;
+      padding: 50px 20px;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 0;
+    }
+
+    /* Center vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateX(-50%);
+    }
+
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin: 60px 0;
+    }
+
+    .timeline-box {
+      width: 45%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background-color: #0d6efd;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .timeline-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .timeline-box {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+      .timeline-dot {
+        display: none;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+    }
+
+</style>
+
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- SINGLE NAVIGATION HEADER -->
+    <header>
+        <div class="container">
+            <nav class="glass">
+                <div class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 48 48" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Grid of circles with varying sizes -->
+                            <circle cx="16" cy="16" r="5" opacity="0.9"/>
+                            <circle cx="32" cy="16" r="4" opacity="0.8"/>
+                            <circle cx="16" cy="32" r="4" opacity="0.7"/>
+                            <circle cx="32" cy="32" r="5" opacity="0.85"/>
+                            <!-- Small accent dots -->
+                            <circle cx="24" cy="8" r="2" opacity="1"/>
+                            <circle cx="8" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="40" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="24" cy="40" r="2" opacity="1"/>
+                            <!-- Tiny corner dots -->
+                            <circle cx="8" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="8" cy="40" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="40" r="1" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span>Health Monitoring</span>
+                </div>
+                <div class="nav-links">
+                    <a href="{% url 'hospital_dashbord' %}">Home</a>
+                    <a href="{% url 'hospital_profile' %}" >Profile</a>
+                    <a href="{% url 'patient_registration_by_hospital' %}" >Patient Registration</a>
+                    <a href="{% url 'home' %}" >Logout</a>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="content-wrapper">
+                <section class="hero glass">
+                    <div class="hero-image">
+                        <video id="healthVideo" autoplay muted loop playsinline style="width: 550px; height: 300px; object-fit: cover; border-radius: 10px;">
+                            <source src="{% static 'videos/health.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="hero-content">
+                        <h1>Welcome to the Future</h1>
+                        <p>Where technology meets human compassion.
+                            Healing begins with a single intelligent touch.
+                            Real-time care, anytime, anywhere.
+                            Personalized wellness built just for you.
+                            From early detection to smart recovery.
+                            Connected systems, empowered lives.
+                            This is not just health — this is your future redefined.
+                        </p>
+                    </div>
+                </section>
+
+                
+
+    <!-- SINGLE FOOTER -->
+    <div id="footer">
+        <div class="container">
+            <footer class="glass">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#" onclick="showPage('about')">About Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">XML Sitemap</a>
+                        <a href="#" onclick="showPage('contact')">Contact</a>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2025 Glossy Touch. All rights reserved. Crafted with modern web technologies. 
+                        Provided by <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+<script >
+
+    function showPage(pageId) 
+    {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("healthVideo");
+        video.playbackRate = 2.5;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring</title>
+    
+    <link rel="stylesheet" href="{% static 'templatemo-glossy-touch.css' %}">
+<!--
+
+TemplateMo 592 glossy touch
+
+https://templatemo.com/tm-592-glossy-touch
+
+-->
+    <style>
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.form-control::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.form-control {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-form, .contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+
+body {
+      margin: 0;
+      padding: 50px 20px;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 0;
+    }
+
+    /* Center vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateX(-50%);
+    }
+
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin: 60px 0;
+    }
+
+    .timeline-box {
+      width: 45%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background-color: #0d6efd;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .timeline-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .timeline-box {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+      .timeline-dot {
+        display: none;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+    }
+
+</style>
+
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- SINGLE NAVIGATION HEADER -->
+    <header>
+        <div class="container">
+            <nav class="glass">
+                <div class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 48 48" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Grid of circles with varying sizes -->
+                            <circle cx="16" cy="16" r="5" opacity="0.9"/>
+                            <circle cx="32" cy="16" r="4" opacity="0.8"/>
+                            <circle cx="16" cy="32" r="4" opacity="0.7"/>
+                            <circle cx="32" cy="32" r="5" opacity="0.85"/>
+                            <!-- Small accent dots -->
+                            <circle cx="24" cy="8" r="2" opacity="1"/>
+                            <circle cx="8" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="40" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="24" cy="40" r="2" opacity="1"/>
+                            <!-- Tiny corner dots -->
+                            <circle cx="8" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="8" cy="40" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="40" r="1" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span>Health Monitoring</span>
+                </div>
+                <div class="nav-links">
+                    <a href="{% url 'patient_dashbord' %}">Home</a>
+                    <a href="{% url 'view_p_record' %}">Rocord</a>
+                    <a href="{% url 'appointment' %}">Appointment</a>
+                    <a href="{% url 'patient_profile' %}" >Profile</a>
+                    <a href="{% url 'home' %}" >Logout</a>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <section style="padding: 30px 0px 0px 0px; display: flex; justify-content: center;">
+
+                
+
+                <!-- Right: Booking Form -->
+                <div class="contact-form glass" style="width: 100%; max-width: 600px;">
+                    {% if messages %}
+                      {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                          {{ message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                      {% endfor %}
+                    {% endif %} 
+                    <h2 style="text-align: center; font-weight: bold;">⁌ Profile ⁍</h2>
+                    <form method="POST" action="{% url 'update_profile' %}">
+                        {% csrf_token %}
+            
+                        <div class="form-group">
+                            <label for="booking-fname">First Name : </label>
+                            <input type="text" id="booking-name" name="first_name" placeholder="Enter your First name" value={{ patient.first_name }}>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="booking-mname">Middle Name : </label>
+                            <input type="text" id="booking-name" name="middle_name" placeholder="Enter your Middle name" value={{ patient.middle_name }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-lname">Last Name : </label>
+                            <input type="text" id="booking-name" name="last_name" placeholder="Enter your Last name" value={{ patient.last_name }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-age">Age : </label>
+                            <input type="number" id="booking-name" name="age" placeholder="Enter your Age" value={{ patient.age }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-gender">Gender : </label>
+                            <select id="booking-gender" name="gender" class="form-control" >
+                                <option value="">Select Gender</option>
+                                <option value="Male" {% if patient.gender == "Male" %}selected{% endif %}>Male</option>
+                                <option value="Female" {% if patient.gender == "Female" %}selected{% endif %}>Female</option>
+                                <option value="Others" {% if patient.gender == "Others" %}selected{% endif %}>Others</option>
+                            </select>
+                        
+                        <div class="form-group">
+                            <label for="marital-status">Marital Status :</label>
+                            <select id="marital-status" name="marital_status" class="form-control" >
+                                <option value="">Select Marital Status</option>
+                                <option value="Single" {% if patient.marital_status == "Single" %}selected{% endif %}>Single</option>
+                                <option value="Married" {% if patient.marital_status == "Married" %}selected{% endif %}>Married</option>
+                                <option value="Divorced" {% if patient.marital_status == "Divorced" %}selected{% endif %}>Divorced</option>
+                                <option value="Widowed" {% if patient.marital_status == "Widowed" %}selected{% endif %}>Widowed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                        <label for="booking-address">Address : </label>
+                        <textarea id="booking-address" name="address" placeholder="Address">{{ patient.address }}</textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-phone">Phone Number : </label>
+                            <input type="tel" id="booking-phone" name="phone" placeholder="123-456-7890" value={{ patient.phone }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email : </label>
+                            <input type="email" id="booking-email" name="email" placeholder="Enter your email" value={{ patient.email }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-username">Username : </label>
+                            <input type="text" id="booking-username" name="username" placeholder="Choose a Username" value="{{ patient.username }}">
+                        </div>
+                        
+                        <div class="form-group" style="text-align: center; margin-top: 20px;">
+                            <button type="submit" class="cta-button">Update Profile</button>
+                        </div>
+                        {% if messages %}
+                        <div>
+                            {% for message in messages %}
+                            <p style="color: lightgreen;">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+
+            </section>
+
+
+    <!-- SINGLE FOOTER -->
+    <div id="footer">
+        <div class="container">
+            <footer class="glass">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#" onclick="showPage('about')">About Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">XML Sitemap</a>
+                        <a href="#" onclick="showPage('contact')">Contact</a>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2025 Glossy Touch. All rights reserved. Crafted with modern web technologies. 
+                        Provided by <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+<script >
+
+    function showPage(pageId) 
+    {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("healthVideo");
+        video.playbackRate = 2.5;
+    });
+
+       document.querySelector("form").addEventListener("submit", function (event) {
+    // Get all field values
+    const firstName = document.querySelector("input[name='first_name']").value.trim();
+    const address = document.querySelector("textarea[name='message']").value.trim();
+    const phone = document.querySelector("input[name='phone']").value.trim();
+    const email = document.querySelector("input[name='email']").value.trim();
+    
+    // Regex patterns
+    const phonePattern = /^[6-9]\d{9}$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    
+    // Validation checks
+    if (!firstName) {
+        alert("First Name is required.");
+        event.preventDefault();
+        return;
+    }
+
+    if (!address) {
+        alert("Address is required.");
+        event.preventDefault();
+        return;
+    }
+
+
+    if (!phonePattern.test(phone)) {
+        alert("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+        event.preventDefault();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid Gmail address (e.g., example@gmail.com).");
+        event.preventDefault();
+        return;
+    }
+
+    
+
+    // If all validations pass
+    alert("Registration successful!");
+});
+
+
+</script>
+</body>
+</html>

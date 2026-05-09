@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring</title>
+    
+    <link rel="stylesheet" href="{% static 'templatemo-glossy-touch.css' %}">
+<!--
+
+TemplateMo 592 glossy touch
+
+https://templatemo.com/tm-592-glossy-touch
+
+-->
+    <style>
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.form-control::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.form-control {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-form, .contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+
+body {
+      margin: 0;
+      padding: 50px 20px;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 0;
+    }
+
+    /* Center vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateX(-50%);
+    }
+
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin: 60px 0;
+    }
+
+    .timeline-box {
+      width: 45%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background-color: #0d6efd;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .timeline-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .timeline-box {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+      .timeline-dot {
+        display: none;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+    }
+
+select {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+
+option {
+    color: white;
+    background-color: #2d2d2d; /* Dark background so white text is visible */
+}
+
+.fingerprint-btn {
+    position: relative;
+    background: transparent;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    color: white;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.fingerprint-btn::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    opacity: 0;
+    transition: transform 0.4s, opacity 0.4s;
+}
+
+.fingerprint-btn:active::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.fingerprint-icon {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Success checkmark animation */
+.fingerprint-btn.success {
+    border-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.fingerprint-btn.success svg path {
+    fill: #28a745;
+}
+
+
+
+</style>
+
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- SINGLE NAVIGATION HEADER -->
+    <header>
+        <div class="container">
+            <nav class="glass">
+                <div class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 48 48" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Grid of circles with varying sizes -->
+                            <circle cx="16" cy="16" r="5" opacity="0.9"/>
+                            <circle cx="32" cy="16" r="4" opacity="0.8"/>
+                            <circle cx="16" cy="32" r="4" opacity="0.7"/>
+                            <circle cx="32" cy="32" r="5" opacity="0.85"/>
+                            <!-- Small accent dots -->
+                            <circle cx="24" cy="8" r="2" opacity="1"/>
+                            <circle cx="8" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="40" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="24" cy="40" r="2" opacity="1"/>
+                            <!-- Tiny corner dots -->
+                            <circle cx="8" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="8" cy="40" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="40" r="1" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span>Health Monitoring</span>
+                </div>
+                <div class="nav-links">
+                    <a href="{% url 'hospital_dashbord' %}">Home</a>
+                    <a href="{% url 'hospital_profile' %}" >Profile</a>
+                    <a href="{% url 'patient_registration_by_hospital' %}" >Patient Registration</a>
+                    <a href="{% url 'home' %}" >Logout</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section style="padding: 30px 0px 0px 0px; display: flex; justify-content: center;">
+
+                
+
+                <!-- Right: Booking Form -->
+                <div class="contact-form glass" style="width: 100%; max-width: 600px;">
+
+                    <h2 style="text-align: center; font-weight: bold;">Patient Registration</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+            
+                        <div class="form-group">
+                            <label for="booking-fname">First Name : </label>
+                            <input type="text" id="booking-name" name="first_name" placeholder="Enter your First name" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-mname">Middle Name : </label>
+                            <input type="text" id="booking-name" name="middle_name" placeholder="Enter your Middle name" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-lname">Last Name : </label>
+                            <input type="text" id="booking-name" name="last_name" placeholder="Enter your Last name" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-age">Age : </label>
+                            <input type="number" id="booking-name" name="age" placeholder="Enter your Age" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-gender">Gender : </label>
+                            <select id="booking-gender" name="gender" class="form-control">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="marital-status">Marital Status :</label>
+                            <select id="marital-status" name="marital_status" class="form-control">
+                                <option value="">Select Marital Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Widowed">Widowed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-address">Address : </label>
+                            <textarea id="booking-message" name="message" placeholder="Address"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-phone">Phone Number : </label>
+                            <input type="tel" id="booking-phone" name="phone" placeholder="123-456-7890" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email : </label>
+                            <input type="email" id="booking-email" name="email" placeholder="Enter your email" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-username">Username : </label>
+                            <input type="text" id="booking-username" name="username" placeholder="Choose a Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-password">Password : </label>
+                            <input type="password" id="booking-password" name="password" placeholder="Enter your Password">
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <label>Fingerprint Authentication :</label>
+                            <button type="button" class="fingerprint-btn" onclick="captureFingerprint()">
+                                <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                                    <path d="M12 1a9 9 0 0 0-9 9v2a1 1 0 1 0 2 0v-2a7 7 0 1 1 14 0v2a1 1 0 1 0 2 0v-2a9 9 0 0 0-9-9zm0 5a4 4 0 0 0-4 4v2a1 1 0 1 0 2 0v-2a2 2 0 1 1 4 0v2a1 1 0 1 0 2 0v-2a4 4 0 0 0-4-4zm0 6a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0v-5a1 1 0 0 0-1-1z"/>
+                                </svg>
+                                <div style="margin-top: 8px;">Tap to Scan</div>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="cta-button">Registration</button><br>
+                        <div style="text-align: center; margin-top: 15px;">
+                            <span style="color: white;">Have you already registered for this? </span>
+                            <a href="{% url 'login' %}" style="color: #007bff; font-weight: bold; text-decoration: none;">
+                                Login
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+
+
+    <!-- SINGLE FOOTER -->
+    <div id="footer">
+        <div class="container">
+            <footer class="glass">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#" onclick="showPage('about')">About Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">XML Sitemap</a>
+                        <a href="#" onclick="showPage('contact')">Contact</a>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2025 Glossy Touch. All rights reserved. Crafted with modern web technologies. 
+                        Provided by <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+<script >
+
+    function showPage(pageId) 
+    {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("healthVideo");
+        video.playbackRate = 4.0;
+    });
+
+
+function captureFingerprint() {
+    const btn = document.getElementById("fingerprintBtn");
+    
+    btn.classList.remove("success"); // reset
+    btn.querySelector("svg path").setAttribute("fill", "white");
+    
+    // Simulate scanning effect
+    btn.disabled = true;
+    btn.querySelector("div").textContent = "Scanning...";
+
+    setTimeout(() => {
+        btn.classList.add("success");
+        btn.querySelector("div").textContent = "Scan Successful";
+        btn.querySelector("svg path").setAttribute("fill", "#28a745");
+        btn.disabled = false;
+    }, 2000); // Simulated scan delay
+}
+
+ 
+</script>
+</body>
+</html>

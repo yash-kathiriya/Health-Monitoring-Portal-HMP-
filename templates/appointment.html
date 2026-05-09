@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring</title>
+    
+    <link rel="stylesheet" href="{% static 'templatemo-glossy-touch.css' %}">
+<!--
+
+TemplateMo 592 glossy touch
+
+https://templatemo.com/tm-592-glossy-touch
+
+-->
+    <style>
+.page {
+  display: none;
+}
+.page.active {
+  display: block;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.form-control::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.form-control {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-form, .contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- SINGLE NAVIGATION HEADER -->
+    <header>
+        <div class="container">
+            <nav class="glass">
+                <div class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 48 48" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Grid of circles with varying sizes -->
+                            <circle cx="16" cy="16" r="5" opacity="0.9"/>
+                            <circle cx="32" cy="16" r="4" opacity="0.8"/>
+                            <circle cx="16" cy="32" r="4" opacity="0.7"/>
+                            <circle cx="32" cy="32" r="5" opacity="0.85"/>
+                            <!-- Small accent dots -->
+                            <circle cx="24" cy="8" r="2" opacity="1"/>
+                            <circle cx="8" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="40" cy="24" r="2" opacity="0.9"/>
+                            <circle cx="24" cy="40" r="2" opacity="1"/>
+                            <!-- Tiny corner dots -->
+                            <circle cx="8" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="8" r="1" opacity="0.6"/>
+                            <circle cx="8" cy="40" r="1" opacity="0.6"/>
+                            <circle cx="40" cy="40" r="1" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span>Health Monitoring</span>
+                </div>
+                <div class="nav-links">
+                    <a href="{% url 'patient_dashbord' %}">Home</a>
+                    <a href="{% url 'view_p_record' %}">Rocord</a>
+                    <a href="{% url 'appointment' %}">Appointment</a>
+                    <a href="{% url 'patient_profile' %}" >Profile</a>
+                    <a href="{% url 'home' %}" >Logout</a>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    
+     
+<!-- BOOKING PAGE -->
+<div id="booking" class="page active">
+
+    <div class="container">
+        <div class="content-wrapper">
+            <section class="contact-grid"> <!-- Use same grid style as contact -->
+                
+                <!-- Left: Booking Image -->
+                <div class="contact-info glass"> 
+                    <h2 style="text-align: center; font-weight: bold;">Book with Us</h2>
+                    <img src="{% static 'images/book_image.jpg' %}" class="img-fluid rounded shadow" alt="Booking Image" style="width: 515px; height: 700px; object-fit: cover;border-radius: 10px;">
+                    
+                </div>
+
+                <!-- Right: Booking Form -->
+                <div class="contact-form glass">
+                    <h2 style="text-align: center; font-weight: bold;">Book an Appointment</h2>
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="booking-name">Full Name</label>
+                            <input type="text" id="booking-name" name="first_name" placeholder="Enter your full name" value="{{ patient.first_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email Address</label>
+                            <input type="email" id="booking-email" name="email" placeholder="Enter your email" value="{{ patient.email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-phone">Phone Number</label>
+                            <input type="tel" id="booking-phone" name="phone" placeholder="123-456-7890" value={{ patient.phone }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-date">Preferred Date</label>
+                            <input type="date" id="booking-date" name="date" >
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-message">Message</label>
+                            <textarea id="booking-message" name="message" placeholder="Any additional notes..."></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Book Now</button>
+                    </form>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+
+    <!-- SINGLE FOOTER -->
+    <div id="footer">
+        <div class="container">
+            <footer class="glass">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#" onclick="showPage('about')">About Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">XML Sitemap</a>
+                        <a href="#" onclick="showPage('contact')">Contact</a>
+                    </div>
+                    <div class="copyright">
+                        &copy; 2025 Glossy Touch. All rights reserved. Crafted with modern web technologies. 
+                        Provided by <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+<script >
+
+    function showPage(pageId) 
+    {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("healthVideo");
+        video.playbackRate = 4.0;
+    });
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent default submit
+
+    const form = event.target;
+    const fname = form['first_name'].value.trim();
+    const email = form['email'].value.trim();
+    const phone = form['phone'].value.trim();
+    const message = form['message'].value.trim();
+    const dateInput = form['date'].value.trim();
+
+    // Validate fields
+    if (!fname) {
+        alert('Full name is required.');
+        return;
+    }
+
+    if (!email) {
+        alert('Email is required.');
+        return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    if (!phone) {
+        alert('Phone number is required.');
+        return;
+    }
+
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+        alert('Phone number must start with 6,7,8 or 9 and be exactly 10 digits.');
+        return;
+    }
+
+    if (!dateInput) {
+        alert('Please select a preferred date.');
+        return;
+    }
+
+    const selectedDate = new Date(dateInput);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // clear time
+
+    if (selectedDate < today) {
+        alert('You cannot book an appointment for a past date.');
+        return;
+    }
+
+    if (!message) {
+        alert('Please enter a message.');
+        return;
+    }
+
+    // Check appointment limit via AJAX
+    fetch(`/check-appointment-limit/?date=${dateInput}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.full) {
+                alert('Maximum 50 appointments already booked for this date. Please choose another day.');
+            } else {
+                // If you want to check email duplication, add another fetch here
+
+                // Finally, submit the form
+                form.submit();
+            }
+        })
+        .catch(err => {
+            alert('Could not validate appointment date. Please try again.');
+            console.error(err);
+        });
+});
+
+
+</script>
+</body>
+</html>
