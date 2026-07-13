@@ -18,3 +18,13 @@ Health Monitoring Portal (HMP) is a full-stack web application built with Python
 - **Database:** SQLite
 
 ## Project Structure
+├── certificates/     # Medical certificates storage
+├── doctor/           # Doctor module app
+├── hmp/              # Main Django project settings
+├── hospital/         # Hospital module app
+├── idproofs/         # ID proof documents storage
+├── patient/          # Patient module app
+├── static/           # Static files (CSS, JS, images)
+├── templates/        # HTML templates
+├── db.sqlite3        # SQLite database
+└── manage.py         # Django management script
